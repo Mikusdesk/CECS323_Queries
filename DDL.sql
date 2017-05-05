@@ -62,7 +62,6 @@ create table PremiereCustomers(
         REFERENCES ExistingCustomers (custID)
 );
 
-
 create table ProspectiveCustomers(
     custID VARCHAR(20) NOT NULL,
     refID VARCHAR(20) NOT NULL,
@@ -109,24 +108,24 @@ create table EmailProspective(
 );
 
 CREATE TABLE Vehicle(
-    vin                     varchar(17) NOT NULL,
+    VIN                     varchar(17) NOT NULL,
     make                    varchar(20) NOT NULL,
     model                   varchar(20) NOT NULL,
     vyear                   int NOT NULL,
     currentMileage          int NOT NULL,
     estimatedMilePerYear    int NOT NULL,
     custID                  varchar(20) NOT NULL,
-    CONSTRAINT  vehicle_pk  PRIMARY KEY (vin)
+    CONSTRAINT  vehicle_pk  PRIMARY KEY (VIN)
 );
 
 CREATE TABLE MaintenancePackage(
     packageID               int NOT NULL,
     packageName             varchar(20) NOT NULL,
     packMileage             int NOT NULL,
-    vin                     varchar(17) NOT NULL,
+    VIN                     varchar(17) NOT NULL,
     itemID                  varchar(20) NOT NULL,
     CONSTRAINT  maintenancepackage_pk  PRIMARY KEY (packageID),
-    CONSTRAINT maintenancepackage_fk FOREIGN KEY (vin) REFERENCES Vehicle (vin),
+    CONSTRAINT maintenancepackage_fk FOREIGN KEY (VIN) REFERENCES Vehicle (VIN),
     --CONSTRAINT maintenancepackage_fk FOREIGN KEY (itemID) REFERENCES MaintenanceItem (itemID)
 );
 CREATE TABLE MaintenanceVisit (
@@ -161,7 +160,7 @@ CREATE TABLE VisitItem (
     CONSTRAINT VisitItem_fk_2 FOREIGN KEY (visitID) REFERENCES MaintenanceVisit (visitID)
 );
 
---ALTER TABLE MaintenanceVisit
---    ADD CONSTRAINT MaintenanceVisit_fk_1 FOREIGN KEY (VIN) REFERENCES Vehicle (vin);
---ALTER TABLE MaintenanceVisit
---    ADD CONSTRAINT MaintenanceVisit_fk_2 FOREIGN KEY (packageID) REFERENCES MaintenancePackage (packageID);
+ALTER TABLE MaintenanceVisit
+    ADD CONSTRAINT MaintenanceVisit_fk_1 FOREIGN KEY (VIN) REFERENCES Vehicle (vin);
+ALTER TABLE MaintenanceVisit
+    ADD CONSTRAINT MaintenanceVisit_fk_2 FOREIGN KEY (packageID) REFERENCES MaintenancePackage (packageID);
