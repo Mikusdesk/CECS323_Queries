@@ -123,9 +123,45 @@ CREATE TABLE MaintenancePackage(
     packageID               int NOT NULL,
     packageName             varchar(20) NOT NULL,
     packMileage             int NOT NULL,
-    vin                     varchar(20) NOT NULL,
+    vin                     varchar(17) NOT NULL,
     itemID                  varchar(20) NOT NULL,
     CONSTRAINT  maintenancepackage_pk  PRIMARY KEY (packageID),
     CONSTRAINT maintenancepackage_fk FOREIGN KEY (vin) REFERENCES Vehicle (vin),
     --CONSTRAINT maintenancepackage_fk FOREIGN KEY (itemID) REFERENCES MaintenanceItem (itemID)
 );
+CREATE TABLE MaintenanceVisit (
+    VIN varchar(17) NOT NULL,
+    visitID varchar(20) NOT NULL,
+    visitDate date NOT NULL,
+    expectedMileage int NOT NULL,
+    actualMileage int NOT NULL,
+    billedAmount double NOT NULL,
+    packageID int NOT NULL,
+    employeeID varchar(20) NOT NULL,
+    CONSTRAINT MaintenanceVisits_pk PRIMARY KEY (visitID)
+);
+
+CREATE TABLE MaintenanceItem (
+    itemID varchar(20) NOT NULL,
+    itemName varchar(30) NOT NULL,
+    itemCost double NOT NULL,
+    laborHours int NOT NULL,
+    itemDesc varchar(50),
+    skillName varchar(20) NOT NULL,
+    CONSTRAINT MaintenanceItem_pk PRIMARY KEY (itemID)
+);
+
+CREATE TABLE VisitItem (
+    itemID varchar(20) NOT NULL,
+    visitID varchar(20) NOT NULL,
+    hours int NOT NULL,
+    employeeID varchar(20) NOT NULL,
+    CONSTRAINT VisitItem_pk PRIMARY KEY (itemID, visitID),
+    CONSTRAINT VisitItem_fk_1 FOREIGN KEY (itemID) REFERENCES MaintenanceItem (itemID),
+    CONSTRAINT VisitItem_fk_2 FOREIGN KEY (visitID) REFERENCES MaintenanceVisit (visitID)
+);
+
+--ALTER TABLE MaintenanceVisit
+--    ADD CONSTRAINT MaintenanceVisit_fk_1 FOREIGN KEY (VIN) REFERENCES Vehicle (vin);
+--ALTER TABLE MaintenanceVisit
+--    ADD CONSTRAINT MaintenanceVisit_fk_2 FOREIGN KEY (packageID) REFERENCES MaintenancePackage (packageID);
