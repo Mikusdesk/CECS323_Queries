@@ -85,7 +85,7 @@ create table Emails(
 create table EmailSteady(
     emailID VARCHAR(20) NOT NULL,
     custID VARCHAR(20) NOT NULL,
-    packageID INTEGER NOT NULL,
+    packageID VARCHAR(20) NOT NULL,
     date_sent DATE NOT NULL,
     CONSTRAINT email_steady_pk PRIMARY KEY (emailID, custID, packageID, date_sent),
     CONSTRAINT email_steady_fk FOREIGN KEY (emailID)
@@ -115,19 +115,22 @@ CREATE TABLE Vehicle(
     currentMileage          int NOT NULL,
     estimatedMilePerYear    int NOT NULL,
     custID                  varchar(20) NOT NULL,
-    CONSTRAINT  vehicle_pk  PRIMARY KEY (VIN)
+    CONSTRAINT 	vehicle_pk  PRIMARY KEY (VIN).
+	CONSTRAINT	vehicle_fk 	FOREIGN KEY(custID) 
+		REFERENCES Customers(custID)
 );
 
 CREATE TABLE MaintenancePackage(
-    packageID               int NOT NULL,
+    packageID 				VARCHAR(20) NOT NULL,
     packageName             varchar(20) NOT NULL,
     packMileage             int NOT NULL,
     VIN                     varchar(17) NOT NULL,
     itemID                  varchar(20) NOT NULL,
     CONSTRAINT  maintenancepackage_pk  PRIMARY KEY (packageID),
     CONSTRAINT maintenancepackage_fk FOREIGN KEY (VIN) REFERENCES Vehicle (VIN),
-    --CONSTRAINT maintenancepackage_fk FOREIGN KEY (itemID) REFERENCES MaintenanceItem (itemID)
+    CONSTRAINT maintenancepackage_fk FOREIGN KEY (itemID) REFERENCES MaintenanceItem (itemID)
 );
+
 CREATE TABLE MaintenanceVisit (
     VIN varchar(17) NOT NULL,
     visitID varchar(20) NOT NULL,
@@ -135,7 +138,7 @@ CREATE TABLE MaintenanceVisit (
     expectedMileage int NOT NULL,
     actualMileage int NOT NULL,
     billedAmount double NOT NULL,
-    packageID int NOT NULL,
+    packageID VARCHAR(20) NOT NULL,
     employeeID varchar(20) NOT NULL,
     CONSTRAINT MaintenanceVisits_pk PRIMARY KEY (visitID)
 );
