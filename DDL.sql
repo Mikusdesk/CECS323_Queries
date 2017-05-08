@@ -1,6 +1,28 @@
---DROP TABLE MaintenancePackage;
---DROP TABLE Vehicle;
-
+/*
+DROP TABLE MechanicSkills;
+DROP TABLE Mentorings;
+DROP TABLE Skills;
+DROP TABLE ServiceTechnicians;
+DROP TABLE Certifications;
+DROP TABLE Mechanics;
+DROP TABLE Employees;
+DROP TABLE VisitItem;
+DROP TABLE MaintenanceVisit;
+DROP TABLE EmailProspective;
+DROP TABLE EmailSteady;
+DROP TABLE MaintenancePackage;
+DROP TABLE MaintenanceItem;
+DROP TABLE Vehicle;
+DROP TABLE Emails;
+DROP TABLE ProspectiveCustomers;
+DROP TABLE PremiereCustomers;
+DROP TABLE SteadyCustomers;
+DROP TABLE ExistingCustomers;
+DROP TABLE Addressess;
+DROP TABLE PrivateIndividuals;
+DROP TABLE Corporations;
+DROP TABLE Customers;
+*/
 create table Customers (
     custID 			VARCHAR(20) NOT NULL,
     Name 			VARCHAR(40) NOT NULL,
@@ -82,6 +104,43 @@ create table Emails(
     CONSTRAINT email_pk PRIMARY KEY (emailID)
 );
 
+
+CREATE TABLE Vehicle(
+    VIN       			varchar(17) NOT NULL,
+    make                	varchar(20) NOT NULL,
+    model               	varchar(20) NOT NULL,
+    vyear               	int NOT NULL,
+    currentMileage      	int NOT NULL,
+    estimatedMilePerYear  	int NOT NULL,
+    custID                  varchar(20) NOT NULL,
+    CONSTRAINT 	vehicle_pk  PRIMARY KEY (VIN),
+	CONSTRAINT	vehicle_fk 	FOREIGN KEY(custID) 
+		REFERENCES Customers(custID)
+);
+
+CREATE TABLE MaintenanceItem (
+    itemID 		varchar(20) NOT NULL,
+    itemName 	varchar(30) NOT NULL,
+    itemCost 	double NOT NULL,
+    laborHours 	int NOT NULL,
+    itemDesc 	varchar(50),
+    skillName 	varchar(20) NOT NULL,
+    CONSTRAINT MaintenanceItem_pk PRIMARY KEY (itemID)
+);
+
+CREATE TABLE MaintenancePackage(
+    packageID 			VARCHAR(20) NOT NULL,
+    packageName         varchar(20) NOT NULL,
+    packMileage         int NOT NULL,
+    VIN                 varchar(17) NOT NULL,
+    itemID              varchar(20) NOT NULL,
+    CONSTRAINT  maintenancepackage_pk  PRIMARY KEY (packageID),
+    CONSTRAINT maintenancepackage_fk FOREIGN KEY (VIN) 
+		REFERENCES Vehicle (VIN),
+    CONSTRAINT maintenancepackage_fk_2 FOREIGN KEY (itemID) 
+		REFERENCES MaintenanceItem (itemID)
+);
+
 create table EmailSteady(
     emailID 		VARCHAR(20) NOT NULL,
     custID 			VARCHAR(20) NOT NULL,
@@ -98,39 +157,14 @@ create table EmailSteady(
 
 create table EmailProspective(
     emailID 			VARCHAR(20) NOT NULL,
-    custID 				VARCHAR(20) NOT NULL,
+    custID 			VARCHAR(20) NOT NULL,
+    refID                       VARCHAR(20) NOT NULL,
     date_sent 			DATE NOT NULL,
     CONSTRAINT email_pros_pk PRIMARY KEY (emailID, custID, date_sent),
     CONSTRAINT email_pros_fk FOREIGN KEY (emailID)
         REFERENCES Emails (emailID),
-    CONSTRAINT email_pros_cust_fk FOREIGN KEY (custID)
-        REFERENCES ProspectiveCustomers (custID)
-);
-
-CREATE TABLE Vehicle(
-    VIN       				varchar(17) NOT NULL,
-    make                	varchar(20) NOT NULL,
-    model               	varchar(20) NOT NULL,
-    vyear               	int NOT NULL,
-    currentMileage      	int NOT NULL,
-    estimatedMilePerYear  	int NOT NULL,
-    custID                  varchar(20) NOT NULL,
-    CONSTRAINT 	vehicle_pk  PRIMARY KEY (VIN).
-	CONSTRAINT	vehicle_fk 	FOREIGN KEY(custID) 
-		REFERENCES Customers(custID)
-);
-
-CREATE TABLE MaintenancePackage(
-    packageID 			VARCHAR(20) NOT NULL,
-    packageName         varchar(20) NOT NULL,
-    packMileage         int NOT NULL,
-    VIN                 varchar(17) NOT NULL,
-    itemID              varchar(20) NOT NULL,
-    CONSTRAINT  maintenancepackage_pk  PRIMARY KEY (packageID),
-    CONSTRAINT maintenancepackage_fk FOREIGN KEY (VIN) 
-		REFERENCES Vehicle (VIN),
-    CONSTRAINT maintenancepackage_fk_2 FOREIGN KEY (itemID) 
-		REFERENCES MaintenanceItem (itemID)
+    CONSTRAINT email_pros_cust_fk FOREIGN KEY (custID, refID)
+        REFERENCES ProspectiveCustomers (custID, refID)
 );
 
 CREATE TABLE MaintenanceVisit (
@@ -142,17 +176,12 @@ CREATE TABLE MaintenanceVisit (
     billedAmount 	double NOT NULL,
     packageID 		VARCHAR(20) NOT NULL,
     employeeID 		varchar(20) NOT NULL,
-    CONSTRAINT MaintenanceVisits_pk PRIMARY KEY (visitID)
-);
-
-CREATE TABLE MaintenanceItem (
-    itemID 		varchar(20) NOT NULL,
-    itemName 	varchar(30) NOT NULL,
-    itemCost 	double NOT NULL,
-    laborHours 	int NOT NULL,
-    itemDesc 	varchar(50),
-    skillName 	varchar(20) NOT NULL,
-    CONSTRAINT MaintenanceItem_pk PRIMARY KEY (itemID)
+    CONSTRAINT MaintenanceVisits_pk PRIMARY KEY (visitID),
+    CONSTRAINT MaintenanceVisit_fk_1 FOREIGN KEY (VIN) 
+        REFERENCES Vehicle (VIN),
+    CONSTRAINT MaintenanceVisit_fk_2 FOREIGN KEY (packageID) 
+        REFERENCES MaintenancePackage (packageID)
+    
 );
 
 CREATE TABLE VisitItem (
@@ -167,10 +196,6 @@ CREATE TABLE VisitItem (
 				REFERENCES MaintenanceVisit (visitID)
 );
 
---ALTER TABLE MaintenanceVisit
---    ADD CONSTRAINT MaintenanceVisit_fk_1 FOREIGN KEY (VIN) REFERENCES Vehicle (vin);
---ALTER TABLE MaintenanceVisit
---    ADD CONSTRAINT MaintenanceVisit_fk_2 FOREIGN KEY (packageID) REFERENCES MaintenancePackage (packageID);
 	
 create table Employees(
     employeeID 	VARCHAR(20) NOT NULL,
@@ -233,3 +258,4 @@ create table MechanicSkills(
     CONSTRAINT mechanicskills_fk_skill FOREIGN KEY (skillName)
         REFERENCES Skills (skillName)
 );
+
