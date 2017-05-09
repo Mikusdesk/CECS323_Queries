@@ -1,4 +1,4 @@
-/*
+
 DROP TABLE MechanicSkills;
 DROP TABLE Mentorings;
 DROP TABLE Skills;
@@ -22,7 +22,7 @@ DROP TABLE Addressess;
 DROP TABLE PrivateIndividuals;
 DROP TABLE Corporations;
 DROP TABLE Customers;
-*/
+
 create table Customers (
     custID 			VARCHAR(20) NOT NULL,
     Name 			VARCHAR(40) NOT NULL,
@@ -106,13 +106,13 @@ create table Emails(
 
 
 CREATE TABLE Vehicle(
+    custID                  varchar(20) NOT NULL,
     VIN       			varchar(17) NOT NULL,
     make                	varchar(20) NOT NULL,
     model               	varchar(20) NOT NULL,
     vyear               	int NOT NULL,
     currentMileage      	int NOT NULL,
     estimatedMilePerYear  	int NOT NULL,
-    custID                  varchar(20) NOT NULL,
     CONSTRAINT 	vehicle_pk  PRIMARY KEY (VIN),
 	CONSTRAINT	vehicle_fk 	FOREIGN KEY(custID) 
 		REFERENCES Customers(custID)
