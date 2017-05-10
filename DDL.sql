@@ -1,12 +1,11 @@
-
 DROP TABLE MechanicSkills;
 DROP TABLE Mentorings;
 DROP TABLE Skills;
 DROP TABLE ServiceTechnicians;
 DROP TABLE Certifications;
+DROP TABLE VisitItem;
 DROP TABLE Mechanics;
 DROP TABLE Employees;
-DROP TABLE VisitItem;
 DROP TABLE MaintenanceVisit;
 DROP TABLE EmailProspective;
 DROP TABLE EmailSteady;
@@ -102,7 +101,7 @@ create table Emails(
     emailID 		VARCHAR(20) NOT NULL,
     subject 		VARCHAR(20) not NULL,
     message 		VARCHAR(50) NOT NULL,
-	date_sent		DATE NOT NULL;
+	date_sent		DATE NOT NULL,
     CONSTRAINT email_pk PRIMARY KEY (emailID)
 );
 
@@ -137,7 +136,7 @@ CREATE TABLE MaintenanceItem (
     laborHours 	int NOT NULL,
     itemDesc 	varchar(50),
     skillName 	varchar(20) NOT NULL,
-	packageID	vharchar(20) NOT NULL,
+	packageID	varchar(20) NOT NULL,
     CONSTRAINT MaintenanceItem_pk PRIMARY KEY (itemID),
     CONSTRAINT maintenancePack_fk FOREIGN KEY (packageID) 
 		REFERENCES MaintenancePackage (packageID)
@@ -147,7 +146,7 @@ create table EmailSteady(
     emailID 		VARCHAR(20) NOT NULL,
     custID 			VARCHAR(20) NOT NULL,
     packageID 		VARCHAR(20) NOT NULL,
-    CONSTRAINT email_steady_pk PRIMARY KEY (emailID, custID, packageID, date_sent),
+    CONSTRAINT email_steady_pk PRIMARY KEY (emailID, custID, packageID),
     CONSTRAINT email_steady_fk FOREIGN KEY (emailID)
         REFERENCES Emails (emailID),
     CONSTRAINT email_cust_fk FOREIGN KEY (custID)
@@ -160,7 +159,7 @@ create table EmailProspective(
     emailID 		VARCHAR(20) NOT NULL,
     custID 			VARCHAR(20) NOT NULL,
     refID           VARCHAR(20) NOT NULL,
-    CONSTRAINT email_pros_pk PRIMARY KEY (emailID, custID, date_sent),
+    CONSTRAINT email_pros_pk PRIMARY KEY (emailID, custID),
     CONSTRAINT email_pros_fk FOREIGN KEY (emailID)
         REFERENCES Emails (emailID),
     CONSTRAINT email_pros_cust_fk FOREIGN KEY (custID, refID)
@@ -184,18 +183,6 @@ CREATE TABLE MaintenanceVisit (
     
 );
 
-CREATE TABLE VisitItem (
-    itemID 		varchar(20) NOT NULL,
-    visitID 	varchar(20) NOT NULL,
-    hours 		int NOT NULL,
-    employeeID 	varchar(20) NOT NULL,
-    CONSTRAINT VisitItem_pk PRIMARY KEY (itemID, visitID),
-    CONSTRAINT VisitItem_fk_1 FOREIGN KEY (itemID) 
-				REFERENCES MaintenanceItem (itemID),
-    CONSTRAINT VisitItem_fk_2 FOREIGN KEY (visitID) 
-				REFERENCES MaintenanceVisit (visitID)
-);
-
 	
 create table Employees(
     employeeID 	VARCHAR(20) NOT NULL,
@@ -211,6 +198,20 @@ create table Mechanics(
     CONSTRAINT mechanics_pk PRIMARY KEY (employeeID),
     CONSTRAINT mechanics_fk FOREIGN KEY(employeeID)
         REFERENCES Employees (employeeID)
+);
+
+CREATE TABLE VisitItem (
+    itemID 		varchar(20) NOT NULL,
+    visitID 	varchar(20) NOT NULL,
+    hours 		int NOT NULL,
+    employeeID 	varchar(20) NOT NULL,
+    CONSTRAINT VisitItem_pk PRIMARY KEY (itemID, visitID),
+    CONSTRAINT VisitItem_fk_1 FOREIGN KEY (itemID) 
+				REFERENCES MaintenanceItem (itemID),
+    CONSTRAINT VisitItem_fk_2 FOREIGN KEY (visitID) 
+				REFERENCES MaintenanceVisit (visitID),
+    CONSTRAINT VisitItem_fk_3 FOREIGN KEY (employeeID)
+        REFERENCES Mechanics (employeeID)
 );
 
 create table Certifications(
@@ -258,3 +259,4 @@ create table MechanicSkills(
     CONSTRAINT mechanicskills_fk_skill FOREIGN KEY (skillName)
         REFERENCES Skills (skillName)
 );
+

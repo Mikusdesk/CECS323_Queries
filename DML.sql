@@ -29,6 +29,10 @@ INSERT INTO MaintenanceItem(itemID, itemName, itemCost, laborHours, itemDesc, sk
 			('A123B', 'Alternator Belt', 19.99, 1, 'Duracell Belt', 'Belt Devices'),
 			('C123H', 'Clutch', 199.99, 12, 'GReddy Clutch', 'Transmission');
 			
+INSERT INTO MaintenancePackage(packageID, packageName, packMileage, VIN)
+			VALUES('OIL11ID', 'Oil Change Pack', 50000, 'vin'),
+			('HEADTUNE1', 'Head Tune Pack', 200000, 'vin');
+			
 INSERT INTO Corporations(custID)
 			VALUES('1111C');
 
@@ -61,12 +65,14 @@ INSERT INTO PremiereCustomers (custID, monthly_fee)
 INSERT INTO ProspectiveCustomers(custID, refID, status, referal_date)
 			VALUES('1226P', '1226C', 'Contacted' , '2017-05-07');
 
-INSERT INTO Emails(emailID, subject, message)
-			VALUES('1226C1226P', 'Referral', 'You have been referred to by a customer.');
+INSERT INTO Emails(emailID, subject, message, date_sent)
+			VALUES('1226C1226P', 'Referral', 'You have been referred to by a customer.', '2017-05-08');
 			
-
-INSERT INTO EmailProspective(emailID, custID, refID, date_sent)
-			VALUES('1226C1226P', '1226P', '1226C', '2017-05-08');
+INSERT INTO EmailSteady(emailID, custID, packageID)
+			VALUES('1111CE1', '1111C', '');
+			
+INSERT INTO EmailProspective(emailID, custID, refID)
+			VALUES('1226C1226P', '1226P', '1226C');
 			
 INSERT INTO Employees(employeeID, firstName, lastName, phone)
 			VALUES('7126E', 'Billy', 'Marks', '714-123-7126'),
