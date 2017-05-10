@@ -78,7 +78,7 @@ create table SteadyCustomers(
 
 create table PremiereCustomers(
     custID 			VARCHAR(20) NOT NULL,
-    monthly_fee 	DECIMAL NOT NULL,
+    monthly_fee 	DECIMAL(6,2) NOT NULL,
     CONSTRAINT premiere_pk PRIMARY KEY (custID),
     CONSTRAINT premiere_fk FOREIGN KEY (custID)
         REFERENCES ExistingCustomers (custID)
