@@ -10,8 +10,8 @@ DROP TABLE VisitItem;
 DROP TABLE MaintenanceVisit;
 DROP TABLE EmailProspective;
 DROP TABLE EmailSteady;
-DROP TABLE MaintenancePackage;
 DROP TABLE MaintenanceItem;
+DROP TABLE MaintenancePackage;
 DROP TABLE Vehicle;
 DROP TABLE Emails;
 DROP TABLE ProspectiveCustomers;
@@ -102,6 +102,7 @@ create table Emails(
     emailID 		VARCHAR(20) NOT NULL,
     subject 		VARCHAR(20) not NULL,
     message 		VARCHAR(50) NOT NULL,
+	date_sent		DATE NOT NULL;
     CONSTRAINT email_pk PRIMARY KEY (emailID)
 );
 
@@ -119,6 +120,16 @@ CREATE TABLE Vehicle(
 		REFERENCES Customers(custID)
 );
 
+CREATE TABLE MaintenancePackage(
+    packageID 			VARCHAR(20) NOT NULL,
+    packageName         varchar(20) NOT NULL,
+    packMileage         int NOT NULL,
+    VIN                 varchar(17) NOT NULL,
+    CONSTRAINT  maintenancepackage_pk  PRIMARY KEY (packageID),
+    CONSTRAINT maintenancepackage_fk FOREIGN KEY (VIN) 
+		REFERENCES Vehicle (VIN)
+);
+
 CREATE TABLE MaintenanceItem (
     itemID 		varchar(20) NOT NULL,
     itemName 	varchar(30) NOT NULL,
@@ -126,27 +137,16 @@ CREATE TABLE MaintenanceItem (
     laborHours 	int NOT NULL,
     itemDesc 	varchar(50),
     skillName 	varchar(20) NOT NULL,
-    CONSTRAINT MaintenanceItem_pk PRIMARY KEY (itemID)
-);
-
-CREATE TABLE MaintenancePackage(
-    packageID 			VARCHAR(20) NOT NULL,
-    packageName         varchar(20) NOT NULL,
-    packMileage         int NOT NULL,
-    VIN                 varchar(17) NOT NULL,
-    itemID              varchar(20) NOT NULL,
-    CONSTRAINT  maintenancepackage_pk  PRIMARY KEY (packageID),
-    CONSTRAINT maintenancepackage_fk FOREIGN KEY (VIN) 
-		REFERENCES Vehicle (VIN),
-    CONSTRAINT maintenancepackage_fk_2 FOREIGN KEY (itemID) 
-		REFERENCES MaintenanceItem (itemID)
+	packageID	vharchar(20) NOT NULL,
+    CONSTRAINT MaintenanceItem_pk PRIMARY KEY (itemID),
+    CONSTRAINT maintenancePack_fk FOREIGN KEY (packageID) 
+		REFERENCES MaintenancePackage (packageID)
 );
 
 create table EmailSteady(
     emailID 		VARCHAR(20) NOT NULL,
     custID 			VARCHAR(20) NOT NULL,
     packageID 		VARCHAR(20) NOT NULL,
-    date_sent 		DATE NOT NULL,
     CONSTRAINT email_steady_pk PRIMARY KEY (emailID, custID, packageID, date_sent),
     CONSTRAINT email_steady_fk FOREIGN KEY (emailID)
         REFERENCES Emails (emailID),
@@ -157,10 +157,9 @@ create table EmailSteady(
 );
 
 create table EmailProspective(
-    emailID 			VARCHAR(20) NOT NULL,
+    emailID 		VARCHAR(20) NOT NULL,
     custID 			VARCHAR(20) NOT NULL,
-    refID                       VARCHAR(20) NOT NULL,
-    date_sent 			DATE NOT NULL,
+    refID           VARCHAR(20) NOT NULL,
     CONSTRAINT email_pros_pk PRIMARY KEY (emailID, custID, date_sent),
     CONSTRAINT email_pros_fk FOREIGN KEY (emailID)
         REFERENCES Emails (emailID),
