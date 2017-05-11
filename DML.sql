@@ -262,6 +262,7 @@ INSERT INTO Mentorings(mentor, mentoree, skillName, startDate, endDate)
 			('6543E', '9876E', 'Oil Pan', '2007-01-01', '2007-01-20'),
 			('7126E', '6543E', 'Transmission', '2008-01-01', '2008-01-20');
 
+			
 INSERT INTO MechanicSkills(employeeID, skillName, proficiency)
 			VALUES('7126E', 'Head Resurface', 'Advance'),
 			('7126E', 'Tire Rotation', 'Advance'),
@@ -272,10 +273,10 @@ INSERT INTO MechanicSkills(employeeID, skillName, proficiency)
 			('7126E', 'Valve Reseat', 'Intermediate'),
 			('7126E', 'Alignment', 'Intermediate'),
 			('7126E', 'Brakes', 'Advance'),
-			('7126E', 'Oil Pan', 'Intermediate');
+			('7126E', 'Oil Pan', 'Intermediate'),
 			('7126E', 'Belt Devices', 'Advance'),
 			('7126E', 'Radiator', 'Advance'),
-			('7126E', 'Transmission', 'Advance')
+			('7126E', 'Transmission', 'Advance'),
 			('7126E', 'Cylinder Work', 'Advance'),
 			('7126E', 'Seals Adjustment', 'Advance'),
 						
@@ -285,10 +286,10 @@ INSERT INTO MechanicSkills(employeeID, skillName, proficiency)
 			('8764E', 'Motor Mounts', 'Intermediate'),
 			('8764E', 'Brakes', 'Intermediate'),
 			('8764E', 'Cylinder Work', 'Intermediate'),
-			('8764E', 'Belt Devices', 'Intermediate')
+			('8764E', 'Belt Devices', 'Intermediate'),
 			('8764E', 'Oil Change', 'Intermediate'),
 			('8764E', 'Alignment', 'Intermediate'),
-			('8764E', 'Seals Adjustment', 'Intermediate')
+			('8764E', 'Seals Adjustment', 'Intermediate'),
 			
 			('6543E', 'Head Resurface', 'Beginner'),
 			('6543E', 'Valve Adjustment', 'Beginner'),
@@ -296,7 +297,7 @@ INSERT INTO MechanicSkills(employeeID, skillName, proficiency)
 			('6543E', 'Motor Mounts', 'Beginner'),
 			('6543E', 'Oil Pan', 'Intermediate'),			
 			('6543E', 'Cylinder Work', 'Intermediate'),
-			('6543E', 'Oil Change' 'Intermediate'),
+			('6543E', 'Oil Change', 'Intermediate'),
 			('6543E', 'Belt Devices', 'Intermediate'),
 			
 			('2202E', 'Brakes', 'Advance'),
