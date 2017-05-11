@@ -257,3 +257,4 @@ create table MechanicSkills(
     CONSTRAINT mechanicskills_fk_skill FOREIGN KEY (skillName)
         REFERENCES Skills (skillName)
 );
+
