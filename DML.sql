@@ -245,7 +245,9 @@ INSERT INTO Skills(skillName)
 			('Oil Pan'),
 			('Belt Devices'),
 			('Radiator'),
-			('Transmission');
+			('Transmission'),
+			('Cylinder Work'),
+			('Seals Adjustment');
 			
 INSERT INTO Mentorings(mentor, mentoree, skillName, startDate, endDate)
 			VALUES ('7126E', '2202E', 'Head Resurface', '2006-01-01', '2006-01-20'),
@@ -262,22 +264,40 @@ INSERT INTO Mentorings(mentor, mentoree, skillName, startDate, endDate)
 
 INSERT INTO MechanicSkills(employeeID, skillName, proficiency)
 			VALUES('7126E', 'Head Resurface', 'Advance'),
+			('7126E', 'Tire Rotation', 'Advance'),
 			('7126E', 'Valve Adjustment', 'Advance'),
-			('7126E', 'Transmission', 'Advance'),
+			('7126E', 'LCA Repair', 'Advance'),
+			('7126E', 'Oil Change', 'Advance'),
 			('7126E', 'Motor Mounts', 'Advance'),
 			('7126E', 'Valve Reseat', 'Intermediate'),
-			
+			('7126E', 'Alignment', 'Intermediate'),
+			('7126E', 'Brakes', 'Advance'),
+			('7126E', 'Oil Pan', 'Intermediate');
+			('7126E', 'Belt Devices', 'Advance'),
+			('7126E', 'Radiator', 'Advance'),
+			('7126E', 'Transmission', 'Advance')
+			('7126E', 'Cylinder Work', 'Advance'),
+			('7126E', 'Seals Adjustment', 'Advance'),
+						
 			('8764E', 'Head Resurface', 'Intermediate'),
 			('8764E', 'Valve Adjustment', 'Intermediate'),
 			('8764E', 'Transmission', 'Intermediate'),
 			('8764E', 'Motor Mounts', 'Intermediate'),
 			('8764E', 'Brakes', 'Intermediate'),
+			('8764E', 'Cylinder Work', 'Intermediate'),
+			('8764E', 'Belt Devices', 'Intermediate')
+			('8764E', 'Oil Change', 'Intermediate'),
+			('8764E', 'Alignment', 'Intermediate'),
+			('8764E', 'Seals Adjustment', 'Intermediate')
 			
 			('6543E', 'Head Resurface', 'Beginner'),
 			('6543E', 'Valve Adjustment', 'Beginner'),
 			('6543E', 'Transmission', 'Beginner'),
 			('6543E', 'Motor Mounts', 'Beginner'),
-			('6543E', 'Oil Pan', 'Intermediate'),
+			('6543E', 'Oil Pan', 'Intermediate'),			
+			('6543E', 'Cylinder Work', 'Intermediate'),
+			('6543E', 'Oil Change' 'Intermediate'),
+			('6543E', 'Belt Devices', 'Intermediate'),
 			
 			('2202E', 'Brakes', 'Advance'),
 			('2202E', 'Alignment', 'Intermediate'),
