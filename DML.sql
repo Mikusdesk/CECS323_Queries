@@ -38,7 +38,12 @@ insert into MaintenancePackage(packageId, packageName, packMileage, VIN)
             ('t1566','Tune Up',27000,'JTHBD182110004289'),
             ('t1567','Tune Up',20000,'LM2SS82A7V0030005'),
             ('t1568','Tune Up',25000,'FF2MM79636G512222'),
-            ('t1569','Tune Up',30000,'FM3BD182110005883');
+            ('t1569','Tune Up',30000,'FM3BD182110005883'),
+
+            ('RAUL1', 'Engine Rebuild', 333333, '1HGED3641ML035397'),
+            ('f1560','Fluids',30000,'19UUA662X5A013447'),
+            ('f1561','Fluids',30000,'WBA7E2C55GG738488'),
+            ('f1562','Fluids',30000,'WBS8M9C52H5G84482');
 
 INSERT INTO MaintenanceVisit(VIN, visitID, visitDate, expectedMileage, actualMileage, billedAmount, packageID, employeeID)
             VALUES('19UUA662X5A013447', '1226V', '2014-01-01', 123546, 123456, 99.99, 't1560', '7126E'),
@@ -49,8 +54,12 @@ INSERT INTO MaintenanceVisit(VIN, visitID, visitDate, expectedMileage, actualMil
             ('JF1GD79636G510626', '2222V2', '2013-04-03', 67899, 68000, 399.99, 't1565', '7126E'),
             ('JTHBD182110004289', '1234V', '2014-04-04', 155555, 163211, 179.99, 't1566', '8764E'),
             ('LM2SS82A7V0030005', '1201V', '2015-05-05', 24444, 25555, 229.99, 't1567', '6543E'),
-            ('FF2MM79636G512222', '2004V', '2016-06-06', 88888, 90000, 79.99, 't1568', '7126E'),
-            ('FM3BD182110005883', '1999V', '2016-07-07', 153333, 155014, 459.99, 't1569', '8764E');
+            ('FF2MM79636G512222', '2004V', '2010-06-06', 88888, 90000, 79.99, 't1568', '7126E'),
+            ('FM3BD182110005883', '1999V', '2016-07-07', 153333, 155014, 459.99, 't1569', '8764E'),
+            ('1HGED3641ML035397', '1111C', '2017-04-11', 333333, 343211, 2199.99, 'RAUL1', '8764E'),
+            ('19UUA662X5A013447', '1226V4', '2017-05-08', 123456, 120120, 349.99, 'f1560', '3547E'),
+            ('WBA7E2C55GG738488', '1226V5', '2017-04-20', 15555, 15687, 599.99, 'f1561', '2202E'),
+            ('WBS8M9C52H5G84482', '1226V6', '2017-04-30', 77777, 75468, 459.99, 'f1562', '1226E');
 
 
 INSERT INTO MaintenanceItem(itemID, itemName, itemCost, laborHours, itemDesc, skillName, packageID)
@@ -63,7 +72,25 @@ INSERT INTO MaintenanceItem(itemID, itemName, itemCost, laborHours, itemDesc, sk
                 ('S123R', 'Starter', 79.99, 1, 'OEM Starter', 'Belt Devices', 't1566'),
                 ('R123R', 'Radiator', 129.99, 1, 'OEM Radiator', 'Radiator', 't1567'),
                 ('A123B', 'Alternator Belt', 19.99, 1, 'Duracell Belt', 'Belt Devices', 't1568'),
-                ('C123H', 'Clutch', 199.99, 12, 'GReddy Clutch', 'Transmission', 't1569');
+                ('C123H', 'Clutch', 199.99, 12, 'GReddy Clutch', 'Transmission', 't1569'),
+
+                ('TLOIL1', 'Motor Oil', 39.99, 1, 'Mobil1 Oil', 'Oil Change', 'f1560'),
+                ('TLTOIL1', 'Trans. Oil', 39.99, 1, 'Penzoil Oil', 'Oil Change', 'f1560'),
+                ('TLRAD', 'Radiator Fluid', 39.99, 1, 'Peak Fluid', 'Radiator', 'f1560'),
+                ('M7OIL1', 'Motor Oil', 39.99, 1, 'Mobil1 Oil', 'Oil Change', 'f1561'),
+                ('M7TOIL1', 'Trans. Oil', 39.99, 1, 'Penzoil Oil', 'Oil Change', 'f1561'),
+                ('M7RAD', 'Radiator Fluid', 39.99, 1, 'Peak Fluid', 'Radiator', 'f1561'),
+                ('M3OIL1', 'Motor Oil', 39.99, 1, 'Mobil1 Oil', 'Oil Change', 'f1562'),
+                ('M3TOIL1', 'Trans. Oil', 39.99, 1, 'Penzoil Oil', 'Oil Change', 'f1562'),
+                ('M3RAD', 'Radiator Fluid', 39.99, 1, 'Peak Fluid', 'Radiator', 'f1562'),
+
+                ('RAULHC0', 'Head Gasket', 199.99, 4, 'GReddy Gasket', 'Head Resurface', 'RAUL1'),
+                ('RAULHC1', 'Valves', 229.99, 3, 'OEM Valves', 'Valve Adjustment', 'RAUL1'),
+                ('RAULHC2', 'Valve Spring', 99.99, 4, 'OEM Springs', 'Valve Adjustment', 'RAUL1'),
+                ('RAULHC3', 'Piston Bearing', 149.99, 8, 'Wiseco', 'Cylinder Work', 'RAUL1'),
+                ('RAULHC4', 'Piston', 379.99, 9, 'Wiseco', 'Cylinder Work', 'RAUL1'),
+                ('RAULHC5', 'Piston Rod', 449.99, 6, 'Wiseco', 'Cylinder Work', 'RAUL1'),
+                ('RAULHC6', 'Seals', 39.99, 1, 'Sealed Power', 'Seals Adjustment', 'RAUL1');
 
 INSERT INTO Corporations(custID)
 			VALUES('1111C');
@@ -82,13 +109,13 @@ INSERT INTO Addresses(custID, type, street, city, state)
 	('1111C', 'Billing', '1226 Hiker Dr', 'Long Beach', 'California');
 			
 INSERT INTO ExistingCustomers (custID, regDate)
-	VALUES('1226C', '2010-01-01'),
-	('1111C', '2002-02-02'),
-	('2222C', '1993-03-03'),
-	('1234C', '1994-04-04'),
-        ('1201C', '1995-05-05'),
-        ('2004C', '1996-06-06'),
-        ('1999C', '1997-07-07');
+	VALUES('1226C', '2014-01-01'),
+	('1111C', '2014-02-02'),
+	('2222C', '2013-03-03'),
+	('1234C', '2014-04-04'),
+        ('1201C', '2015-05-05'),
+        ('2004C', '2017-06-06'),
+        ('1999C', '2016-07-07');
 
 INSERT INTO SteadyCustomers(custID, loyalty_points)
 			VALUES('1111C', 3),
@@ -104,14 +131,28 @@ INSERT INTO PremiereCustomers (custID, monthly_fee)
 INSERT INTO ProspectiveCustomers(custID, refID, status, referal_date)
 	VALUES('1226P', '1226C', 'Alive' , '2017-05-07'),
         ('1111P', '1111C', 'Alive', '2016-05-05'),
-        ('2222P', '2222C', 'Dead', '2000-05-05'),
-        ('3333P', '1234C', 'Dead', '1999-01-01'),
+        ('2222P', '2222C', 'Dead', '2010-05-05'),
+        ('3333P', '1234C', 'Dead', '2010-01-01'),
         ('4444P', '1201C', 'Alive', '2017-04-04');
 
 INSERT INTO Emails(emailID, subject, message, date_sent)
 	VALUES('1226C1226P', 'Referral', 'You have been referred to by a customer.', '2012-01-01'),
             ('1226C1226P2' , 'Referral 2', 'Please respond to the referall', '2012-02-02'),
-            ('1226C1226P3', 'Referral 3', 'Last Contact', '2012-03-03');
+            ('1226C1226P3', 'Referral 3', 'Last Contact', '2012-03-03'),
+            ('1111CEM', 'Maintenance', 'You have a maintenance due!', '2014-01-15'),
+            ('1111CEM2', 'Maintenance', 'RE:You have a maintenance due!', '2014-01-21'),
+            ('1201CEM', 'Maintenance', 'You have a maintenance due!', '2015-04-15'),
+            ('1201CEM2', 'Maintenance', 'RE:You have a maintenance due!', '2015-04-21'),
+            ('2004CEM', 'Maintenance', 'You have a maintenance due!', '2016-06-01'),
+            ('2004CEM2', 'Maintenance', 'RE:You have a maintenance due!', '2016-06-30');
+
+INSERT INTO EmailSteady(emailID, custID, packageID)
+        VALUES('1111CEM', '1111C', 't1563'),
+            ('1111CEM2', '1111C', 't1563'),
+            ('1201CEM', '1201C', 't1567'),
+            ('1201CEM2', '1201C', 't1567'),
+            ('2004CEM', '2004C', 't1568'),
+            ('2004CEM2', '2004C', 't1568');
 	
 INSERT INTO EmailProspective(emailID, custID, refID)
 	VALUES('1226C1226P', '1226P', '1226C'),

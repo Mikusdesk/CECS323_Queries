@@ -172,7 +172,7 @@ CREATE TABLE MaintenanceVisit (
     visitDate 		date NOT NULL,
     expectedMileage int NOT NULL,
     actualMileage 	int NOT NULL,
-    billedAmount 	double NOT NULL,
+    billedAmount 	double(9,2) NOT NULL,
     packageID 		VARCHAR(20) NOT NULL,
     employeeID 		varchar(20) NOT NULL,
     CONSTRAINT MaintenanceVisits_pk PRIMARY KEY (visitID),
@@ -257,4 +257,3 @@ create table MechanicSkills(
     CONSTRAINT mechanicskills_fk_skill FOREIGN KEY (skillName)
         REFERENCES Skills (skillName)
 );
-
