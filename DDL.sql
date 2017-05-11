@@ -179,11 +179,9 @@ CREATE TABLE MaintenanceVisit (
     CONSTRAINT MaintenanceVisit_fk_1 FOREIGN KEY (VIN) 
         REFERENCES Vehicle (VIN),
     CONSTRAINT MaintenanceVisit_fk_2 FOREIGN KEY (packageID) 
-        REFERENCES MaintenancePackage (packageID)
-    
+        REFERENCES MaintenancePackage (packageID)    
 );
 
-	
 create table Employees(
     employeeID 	VARCHAR(20) NOT NULL,
     firstName 	VARCHAR(20) NOT NULL,
