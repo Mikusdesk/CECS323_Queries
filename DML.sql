@@ -1,14 +1,21 @@
 
 INSERT INTO Customers (custID, cName, cFirstName, cLastName, cPhone, cEmail) 
-			VALUES('1226C', 'Darren', 'Darren', 'Ly', '656-666-6626', 'darren@gmail.com'),
-                        ('1226P', 'Kitty', 'Kitty', 'Kat', '323-333-3323', 'KittyKat@gmail.com'),
-			('1111C', 'Top Ricer', 'Raul', 'Herrera', '659-288-2882', 'ricerJDM@gmail.com'),
-			('2222C', 'Jose', 'Jose', 'Hernandez-Uribe', '919-222-2202', 'jose@gmail.com'),
-			('1234C', 'Justin', 'Justin', 'Lee', '323-123-4567', 'justin@gmail.com'),
-                        ('1201C', 'Mike', 'Mike', 'Cole', '323-123-4567', 'mccole@gmail.com'),
-                        ('2004C', 'Larry', 'Larry', 'Smith', '323-123-4567', 'lsmith@gmail.com'),
-                        ('1999C', 'Pablo', 'Pablo', 'Escobar', '323-123-4567', 'pe1971@gmail.com');
+            VALUES('1226C', 'Darren', 'Darren', 'Ly', '656-666-6626', 'darren@gmail.com'),
+            ('1226P', 'Kitty', 'Kitty', 'Kat', '323-333-3323', 'KittyKat@gmail.com'),
+            ('1111C', 'Top Ricer', 'Raul', 'Herrera', '659-288-2882', 'ricerJDM@gmail.com'),
+            ('2222C', 'Jose', 'Jose', 'Hernandez-Uribe', '919-222-2202', 'jose@gmail.com'),
+            ('1234C', 'Justin', 'Justin', 'Lee', '323-123-4567', 'justin@gmail.com'),
+            ('1201C', 'Mike', 'Mike', 'Cole', '323-123-4567', 'mccole@gmail.com'),
+            ('2004C', 'Larry', 'Larry', 'Smith', '323-123-4567', 'lsmith@gmail.com'),
+            ('1999C', 'Pablo', 'Pablo', 'Escobar', '323-123-4567', 'pe1971@gmail.com'),
+            ('1111P', 'Tanoshi', 'Tanoshi', 'Saki', '675-879-4879', 'mahjong@gmail.com'),
+            ('2222P', 'Kurisu', 'Kurisu', 'Makise', '626-666-8755', 'biology@gmail.com'),
+            ('3333P', 'Monkey', 'Luffy', 'Monkey D.', '626-879-1011', 'pirate@gmail.com'),
+            ('4444P', 'Pokemon', 'Pikachu', 'Lightning', '323-211-0010', 'pocketmon@gmail.com');
 			
+
+
+
 INSERT INTO Vehicle (custID, VIN, make, model, vyear, currentMileage, estimatedMilePerYear) 
 		VALUES('1226C', '19UUA662X5A013447','Acura', 'TL', 2006, 99999, 9999),
 			('1226C', 'WBA7E2C55GG738488', 'BMW', 'M7', 2012, 12345, 1000),
@@ -33,18 +40,31 @@ insert into MaintenancePackage(packageId, packageName, packMileage, VIN)
             ('t1568','Tune Up',25000,'FF2MM79636G512222'),
             ('t1569','Tune Up',30000,'FM3BD182110005883');
 
+INSERT INTO MaintenanceVisit(VIN, visitID, visitDate, expectedMileage, actualMileage, billedAmount, packageID, employeeID)
+            VALUES('19UUA662X5A013447', '1226V', '2014-01-01', 123546, 123456, 99.99, 't1560', '7126E'),
+            ('WBA7E2C55GG738488', '1226V2', '2014-01-15', 14000, 13333, 399.99, 't1561', '8764E'),
+            ('WBS8M9C52H5G84482', '1226V3', '2014-02-01', 46500, 46000, 599.99, 't1562', '6543E'),
+            ('1HGED3641ML035397', '1111V', '2014-02-02', 333333, 345012, 149.99, 't1563', '8764E'),
+            ('JT2DD82A7V0036715', '2222V', '2013-03-03', 123456, 144444, 199.99, 't1564', '6543E'),
+            ('JF1GD79636G510626', '2222V2', '2013-04-03', 67899, 68000, 399.99, 't1565', '7126E'),
+            ('JTHBD182110004289', '1234V', '2014-04-04', 155555, 163211, 179.99, 't1566', '8764E'),
+            ('LM2SS82A7V0030005', '1201V', '2015-05-05', 24444, 25555, 229.99, 't1567', '6543E'),
+            ('FF2MM79636G512222', '2004V', '2016-06-06', 88888, 90000, 79.99, 't1568', '7126E'),
+            ('FM3BD182110005883', '1999V', '2016-07-07', 153333, 155014, 459.99, 't1569', '8764E');
+
+
 INSERT INTO MaintenanceItem(itemID, itemName, itemCost, laborHours, itemDesc, skillName, packageID)
-			VALUES('O123CH', 'Oil', 39.99, 1, 'Mobil1 Oil', 'Oil Change', 't1560'),
-			('H123G', 'Head Gasket', 99.99, 4, 'TRicer HGasket', 'Head Surface', 't1561'),
-			('H123V', 'Head Valves', 199.99, 2, 'GReddy Valves', 'Valve Adjustment', 't1562'),
-			('L123CA', 'Lower Control Arms', 79.99, 2, 'CUSCO', 'LCA Repair', 't1563'),
-			('B123E', 'Brakes', 89.99, 1, 'Duracell Gold', 'Brakes', 't1564'),
-			('O123P', 'Oil Pan', 149.99, 1, 'OEM Oil Pan', 'Oil Pan', 't1565'),
-			('S123R', 'Starter', 79.99, 1, 'OEM Starter', 'Belt Devices', 't1566'),
-			('R123R', 'Radiator', 129.99, 1, 'OEM Radiator', 'Radiator', 't1567'),
-			('A123B', 'Alternator Belt', 19.99, 1, 'Duracell Belt', 'Belt Devices', 't1568'),
-			('C123H', 'Clutch', 199.99, 12, 'GReddy Clutch', 'Transmission', 't1569');
-			
+                VALUES('O123CH', 'Oil', 39.99, 1, 'Mobil1 Oil', 'Oil Change', 't1560'),
+                ('H123G', 'Head Gasket', 99.99, 4, 'TRicer HGasket', 'Head Resurface', 't1561'),
+                ('H123V', 'Head Valves', 199.99, 2, 'GReddy Valves', 'Valve Adjustment', 't1562'),
+                ('L123CA', 'Lower Control Arms', 79.99, 2, 'CUSCO', 'LCA Repair', 't1563'),
+                ('B123E', 'Brakes', 89.99, 1, 'Duracell Gold', 'Brakes', 't1564'),
+                ('O123P', 'Oil Pan', 149.99, 1, 'OEM Oil Pan', 'Oil Pan', 't1565'),
+                ('S123R', 'Starter', 79.99, 1, 'OEM Starter', 'Belt Devices', 't1566'),
+                ('R123R', 'Radiator', 129.99, 1, 'OEM Radiator', 'Radiator', 't1567'),
+                ('A123B', 'Alternator Belt', 19.99, 1, 'Duracell Belt', 'Belt Devices', 't1568'),
+                ('C123H', 'Clutch', 199.99, 12, 'GReddy Clutch', 'Transmission', 't1569');
+
 INSERT INTO Corporations(custID)
 			VALUES('1111C');
 
@@ -58,17 +78,17 @@ INSERT INTO PrivateIndividuals(custID, street, city, state)
 			('1999C', '919 Martin Luther King St', 'Lynwood', 'California');
 
 INSERT INTO Addresses(custID, type, street, city, state)
-			VALUES('1111C', 'Mailing', '1250 Bellflower Blvd', 'Long Beach', 'California'),
-			('1111C', 'Billing', '1226 Hiker Dr', 'Long Beach', 'California');
+	VALUES('1111C', 'Mailing', '1250 Bellflower Blvd', 'Long Beach', 'California'),
+	('1111C', 'Billing', '1226 Hiker Dr', 'Long Beach', 'California');
 			
 INSERT INTO ExistingCustomers (custID, regDate)
-			VALUES('1226C', '2010-01-01'),
-			('1111C', '2002-02-02'),
-			('2222C', '1993-03-03'),
-			('1234C', '1994-04-04'),
-                        ('1201C', '1995-05-05'),
-                        ('2004C', '1996-06-06'),
-                        ('1999C', '1997-07-07');
+	VALUES('1226C', '2010-01-01'),
+	('1111C', '2002-02-02'),
+	('2222C', '1993-03-03'),
+	('1234C', '1994-04-04'),
+        ('1201C', '1995-05-05'),
+        ('2004C', '1996-06-06'),
+        ('1999C', '1997-07-07');
 
 INSERT INTO SteadyCustomers(custID, loyalty_points)
 			VALUES('1111C', 3),
@@ -82,13 +102,21 @@ INSERT INTO PremiereCustomers (custID, monthly_fee)
                         ('1999C',199.99);
 			
 INSERT INTO ProspectiveCustomers(custID, refID, status, referal_date)
-			VALUES('1226P', '1226C', 'Contacted' , '2017-05-07');
+	VALUES('1226P', '1226C', 'Alive' , '2017-05-07'),
+        ('1111P', '1111C', 'Alive', '2016-05-05'),
+        ('2222P', '2222C', 'Dead', '2000-05-05'),
+        ('3333P', '1234C', 'Dead', '1999-01-01'),
+        ('4444P', '1201C', 'Alive', '2017-04-04');
 
 INSERT INTO Emails(emailID, subject, message, date_sent)
-			VALUES('1226C1226P', 'Referral', 'You have been referred to by a customer.', '2012-01-01');
-			
+	VALUES('1226C1226P', 'Referral', 'You have been referred to by a customer.', '2012-01-01'),
+            ('1226C1226P2' , 'Referral 2', 'Please respond to the referall', '2012-02-02'),
+            ('1226C1226P3', 'Referral 3', 'Last Contact', '2012-03-03');
+	
 INSERT INTO EmailProspective(emailID, custID, refID)
-			VALUES('1226C1226P', '1226P', '1226C');
+	VALUES('1226C1226P', '1226P', '1226C'),
+               ('1226C1226P2', '1226P', '1226C'),
+                ('1226C1226P3', '1226P', '1226C');
 			
 INSERT INTO Employees(employeeID, firstName, lastName, phone)
 			VALUES('7126E', 'Billy', 'Marks', '714-123-7126'),
@@ -107,6 +135,18 @@ INSERT INTO Mechanics(employeeID, title)
 			('3547E', 'Rookie Mechanic'),
 			('1226E', 'Backup Mechanic'),
 			('9876E', 'Intern Mechanic');
+
+INSERT INTO VisitItem(itemID, visitID, hours, employeeID)
+        VALUES('O123CH', '1226V', 1, '3547E'),
+                ('H123G', '1226V2', 2, '8764E'),
+                ('H123V', '1226V3', 4, '8764E'),
+                ('L123CA', '1111V', 2, '2202E'),
+                ('B123E', '2222V', 1, '1226E'),
+                ('O123P', '2222V2', 3, '6543E'),
+                ('S123R', '1234V', 1, '2202E'),
+                ('R123R', '1201V', 4, '9876E'),
+                ('A123B', '2004V', 1, '7126E'),
+                ('C123H', '1999V', 12, '7126E');
 			
 INSERT INTO Certifications(employeeID, certification)
 			VALUES('7126E', 'Ph.D Oilogy'),
