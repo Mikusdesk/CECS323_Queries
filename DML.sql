@@ -131,20 +131,35 @@ INSERT INTO PremiereCustomers (custID, monthly_fee)
 INSERT INTO ProspectiveCustomers(custID, refID, status, referal_date)
 	VALUES('1226P', '1226C', 'Alive' , '2017-05-07'),
         ('1111P', '1111C', 'Alive', '2016-05-05'),
-        ('2222P', '2222C', 'Dead', '2010-05-05'),
-        ('3333P', '1234C', 'Dead', '2010-01-01'),
+        ('2222P', '2222C', 'Dead', '2012-05-05'),
+        ('3333P', '1234C', 'Dead', '2012-01-01'),
         ('4444P', '1201C', 'Alive', '2017-04-04');
 
 INSERT INTO Emails(emailID, subject, message, date_sent)
 	VALUES('1226C1226P', 'Referral', 'You have been referred to by a customer.', '2012-01-01'),
             ('1226C1226P2' , 'Referral 2', 'Please respond to the referall', '2012-02-02'),
             ('1226C1226P3', 'Referral 3', 'Last Contact', '2012-03-03'),
+			
             ('1111CEM', 'Maintenance', 'You have a maintenance due!', '2014-01-15'),
             ('1111CEM2', 'Maintenance', 'RE:You have a maintenance due!', '2014-01-21'),
             ('1201CEM', 'Maintenance', 'You have a maintenance due!', '2015-04-15'),
             ('1201CEM2', 'Maintenance', 'RE:You have a maintenance due!', '2015-04-21'),
             ('2004CEM', 'Maintenance', 'You have a maintenance due!', '2016-06-01'),
-            ('2004CEM2', 'Maintenance', 'RE:You have a maintenance due!', '2016-06-30');
+            ('2004CEM2', 'Maintenance', 'RE:You have a maintenance due!', '2016-06-30'),
+			
+			('1111C1111P', 'Referral', 'You have been referred to by Raul', '2016-05-07'),
+			('1111C1111P2', 'Referral 2', 'Special referral offer!', '2016-12-26'),
+			
+			('2222C2222P', 'Referral', 'You have been referred to by Jose', '2012-05-11'),
+			('2222C2222P2', 'Referral 2', 'Exclusive discounts when you join!', '2012-09-09'),
+			('2222C2222P3', 'Referral 3', 'Last offer for exclusive discounts!', '2013-01-01'),
+			
+			('1234C3333P', 'Referral', 'You have been referred to by Justin', '2012-01-22'),
+			('1234C3333P2', 'Referral 2', 'You have been referred to by Raul', '2012-03-24'),
+			('1234C3333P3', 'Referral 3', 'You have been referred to by Raul', '2012-06-25'),
+			
+			('1201C4444P', 'Referral', 'You have been referred to by Mike', '2017-04-07'),
+			('1201C4444P2', 'Referral 2', 'Respond for a discount!', '2017-05-10');
 
 INSERT INTO EmailSteady(emailID, custID, packageID)
         VALUES('1111CEM', '1111C', 't1563'),
@@ -157,7 +172,20 @@ INSERT INTO EmailSteady(emailID, custID, packageID)
 INSERT INTO EmailProspective(emailID, custID, refID)
 	VALUES('1226C1226P', '1226P', '1226C'),
                ('1226C1226P2', '1226P', '1226C'),
-                ('1226C1226P3', '1226P', '1226C');
+                ('1226C1226P3', '1226P', '1226C'),
+				('1111C1111P', '1111P', '1111C'),
+				('1111C1111P2', '1111P', '1111C'),
+				
+				('2222C2222P', '2222P', '2222C'),
+				('2222C2222P2', '2222P', '2222C'),
+				('2222C2222P3', '2222P', '2222C'),
+				
+				('1234C3333P', '3333P', '1234C'),
+				('1234C3333P2', '3333P', '1234C'),
+				('1234C3333P3', '3333P', '1234C'),
+				
+				('1201C4444P', '4444P', '1201C'),
+				('1201C4444P2', '4444P', '1201C');
 			
 INSERT INTO Employees(employeeID, firstName, lastName, phone)
 			VALUES('7126E', 'Billy', 'Marks', '714-123-7126'),

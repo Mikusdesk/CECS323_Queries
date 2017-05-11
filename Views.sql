@@ -50,3 +50,17 @@ ON  ProspectiveCustomers.custID = Customers.custID
 GROUP BY cEmail
 HAVING COUNT(emailID) >= 3
     AND MAX(date_sent) < DATE_SUB(CURDATE(), INTERVAL 1 YEAR);
+	
+--Bottom views are extra views
+CREATE OR REPLACE VIEW Mentor_mentee_count as
+select mentor, count(mentoree) as Mentee from Mentorings group by mentor;
+
+create or replace view Steady_Customer_Bill as
+select custID, cName, sum(billedAmount) as Payed from Customers natural join SteadyCustomers 
+    natural join Vehicle natural join MaintenanceVisit where visitDate >= year(curdate())-1 group by custID, cName;
+
+create or replace view Steady_Customer_ItemCost as
+select cName, sum(itemCost) as Item_Price from Customers natural join
+ SteadyCustomers natural join Vehicle natural join MaintenanceVisit
+ natural join MaintenancePackage natural join MaintenanceItem 
+    where visitDate >= year(curdate())-1 group by custID;
